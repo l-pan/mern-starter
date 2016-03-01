@@ -16,14 +16,9 @@ class App extends Component {
     return (
       <div>
         <Input />
-        { this.props.children }
       </div>
     );
   }
 }
 
-App.propTypes = {
-  children: PropTypes.object.isRequired,
-};
-
-export default connect()(App);
+export default App;
