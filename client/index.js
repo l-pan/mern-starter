@@ -1,10 +1,17 @@
 import React from 'react';
 import routes from '../shared/routes';
-import DevTools from '../shared/container/DevTools/DevTools';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { configureStore } from '../shared/redux/store/configureStore';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 const store = configureStore(window.__INITIAL_STATE__);
 const history = browserHistory;
@@ -29,7 +36,6 @@ if (process.env.CLIENT && !window.devToolsExtension) {
     <Provider store={store} key="provider">
       <div>
         <Router history={history} routes={routes} />
-        <DevTools />
       </div>
     </Provider>,
     dest
