@@ -77,6 +77,9 @@ const renderFullPage = (html, initialState) => {
 
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res) => {
+  GLOBAL.navigator = {
+    userAgent: req.headers['user-agent']
+  };
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
       return res.status(500).end('Internal server error');
@@ -112,6 +115,13 @@ app.listen(serverConfig.port, (error) => {
   if (!error) {
     console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
   }
+});
+
+app.use(function(req, res, next) {
+  GLOBAL.navigator = {
+    userAgent: req.headers['user-agent']
+  }
+  next();
 });
 
 export default app;
