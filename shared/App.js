@@ -1,24 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import themeDecorator from 'material-ui/lib/styles/theme-decorator';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 
 import Input from './Input';
 
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import themeDecorator from 'material-ui/lib/styles/theme-decorator';
-
-@themeDecorator(getMuiTheme(null, { userAgent: 'all' }))
-class App extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  render() {
-    return (
-      <div>
-        <Input />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <Input />
+    </div>
+  );
 }
 
-export default App;
+export default themeDecorator(getMuiTheme(null, { userAgent: 'all' }))(App);

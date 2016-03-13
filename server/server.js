@@ -32,6 +32,8 @@ import posts from './routes/post.routes';
 import dummyData from './dummyData';
 import serverConfig from './config';
 
+global.navigator = { navigator: 'all' };
+
 // MongoDB Connection
 mongoose.connect(serverConfig.mongoURL, (error) => {
   if (error) {
